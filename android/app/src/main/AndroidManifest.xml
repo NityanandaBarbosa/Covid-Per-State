@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nityananda.brazil_covid_per_state">
    <application
-        android:label="brazil_covid_per_state"
+        android:label="Brazil Covid Per State"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
