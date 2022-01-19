@@ -1,3 +1,4 @@
+import 'package:brazil_covid_per_state/app/shared/consts/AppConsts.dart';
 import 'package:dio/dio.dart';
 
 import 'package:dio/dio.dart';
@@ -7,6 +8,6 @@ class DioClient {
       receiveDataWhenStatusError: true,
       connectTimeout: 5000,
       receiveTimeout: 5000,
-      headers: {"Authorization":"Token 8b34c604f8c467c5950550f6870bde20dc5229fb"}
+      headers: {"Authorization": AppConsts.apiToken}
     ));
 }

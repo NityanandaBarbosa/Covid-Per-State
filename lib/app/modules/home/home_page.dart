@@ -16,7 +16,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
   @override
   void initState() {
     super.initState();
-    store.getList();
+    store.getStateCases();
   }
 
   @override
@@ -26,12 +26,10 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
         title: Text('Covid per state'),
       ),
       body: Observer(
-        builder: (context) => Text('${store.counter}'),
+        builder: (context) => Text('Conta'),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          store.increment();
-        },
+        onPressed: null,
         child: Icon(Icons.refresh),
       ),
     );
