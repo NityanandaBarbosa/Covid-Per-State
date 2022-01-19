@@ -41,8 +41,8 @@ class LoginPageState extends ModularState<LoginPage, LoginStore> {
       onWillPop: () async => false,
       child: Scaffold(
         body: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
+            height: fullMediaHeight,
+            width: fullMediaWidth,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.bottomLeft,
@@ -61,7 +61,7 @@ class LoginPageState extends ModularState<LoginPage, LoginStore> {
           alignment: Alignment.center,
           width: fullMediaWidth * AppConsts.eightyPercent,
           height: fullMediaHeight * AppConsts.thirtyFivePercent,
-          padding: const EdgeInsets.all(AppConsts.twentyFive),
+          padding: EdgeInsets.all(AppConsts.twentyFive),
           decoration: ComponentsStyles.backgroundLoginDecoration,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -85,7 +85,7 @@ class LoginPageState extends ModularState<LoginPage, LoginStore> {
                   textController: store.usernameController),
               loginFormField(
                   mediaWidth: fullMediaWidth,
-                  hintText: "Your Passwor",
+                  hintText: "Your Password",
                   labelText: "Password",
                   isPassword: true,
                   isPasswordHide: store.isPasswordHide,
@@ -136,16 +136,16 @@ class LoginPageState extends ModularState<LoginPage, LoginStore> {
                   labelStyle: ComponentsStyles.regurlar13Black,
                   border: ComponentsStyles.inputBorderBlack54,
                   suffixIcon: !isPassword
-                      ? IconButton(
-                          icon: Icon(Icons.account_circle),
-                          onPressed: null,
-                        )
-                      : IconButton(
-                          icon: Icon(isPasswordHide
-                              ? Icons.visibility
-                              : Icons.visibility_off),
-                          onPressed: () => store.setObscurePassword(!store.isPasswordHide),
-                        ),
+                    ? IconButton(
+                        icon: Icon(Icons.account_circle),
+                        onPressed: null,
+                      )
+                    : IconButton(
+                        icon: Icon(isPasswordHide
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                        onPressed: () => store.setObscurePassword(!store.isPasswordHide),
+                      ),
                   // onChanged: store.setEmail,
                 ),
               ),

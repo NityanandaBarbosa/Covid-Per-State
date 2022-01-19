@@ -13,15 +13,19 @@ class ComponentsStyles {
           bottomRight: Radius.circular(20.0),
         ),
       );
-
+      
   //InputText
-  static get inputBorderBlack54 => OutlineInputBorder(borderSide: BorderSide(color: Colors.black54));
+  static get inputBorderBlack54 =>
+      OutlineInputBorder(borderSide: BorderSide(color: Colors.black54));
 
   //ButtonStyles
-  static get greenButton => ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.green));
-      
+  static get greenButton =>
+      ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.green));
+
   //TextStyles
-  static get normal15White => TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.normal);
-  static get normal20Black => TextStyle(fontSize: 20,color: Colors.black,fontWeight: FontWeight.normal);
+  static get normal15White => TextStyle(
+      fontSize: 15, color: Colors.white, fontWeight: FontWeight.normal);
+  static get normal20Black => TextStyle(
+      fontSize: 20, color: Colors.black, fontWeight: FontWeight.normal);
   static get regurlar13Black => TextStyle(fontSize: 13, color: Colors.black);
 }
