@@ -1,5 +1,5 @@
 import 'package:brazil_covid_per_state/app/modules/login/login_store.dart';
-import 'package:brazil_covid_per_state/app/shared/sytles/AppConsts.dart';
+import 'package:brazil_covid_per_state/app/shared/consts/AppConsts.dart';
 import 'package:brazil_covid_per_state/app/shared/sytles/ComponentsStyles.dart';
 import 'package:edge_alerts/edge_alerts.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
