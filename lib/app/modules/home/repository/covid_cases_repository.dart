@@ -2,7 +2,7 @@ import 'package:brazil_covid_per_state/app/modules/home/models/models.dart';
 import 'package:brazil_covid_per_state/app/shared/dio/dio_client.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class CasoRepository {
+class CovidCasesRepository {
   final dio = Modular.get<DioClient>().dio;
 
   List<DayResult> getCasos() {
