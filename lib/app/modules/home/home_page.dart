@@ -1,4 +1,5 @@
 import 'package:brazil_covid_per_state/app/modules/home/home_store.dart';
+import 'package:brazil_covid_per_state/app/shared/dio/dio_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -13,10 +14,16 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends ModularState<HomePage, HomeStore> {
   @override
+  void initState() {
+    super.initState();
+    store.getList();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Counter'),
+        title: Text('Covid per state'),
       ),
       body: Observer(
         builder: (context) => Text('${store.counter}'),
@@ -25,7 +32,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
         onPressed: () {
           store.increment();
         },
-        child: Icon(Icons.add),
+        child: Icon(Icons.refresh),
       ),
     );
   }

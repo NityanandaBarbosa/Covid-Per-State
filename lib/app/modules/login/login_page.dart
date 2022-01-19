@@ -1,9 +1,11 @@
 import 'package:brazil_covid_per_state/app/modules/login/login_store.dart';
 import 'package:brazil_covid_per_state/app/shared/sytles/AppConsts.dart';
 import 'package:brazil_covid_per_state/app/shared/sytles/ComponentsStyles.dart';
+import 'package:edge_alerts/edge_alerts.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
+import 'package:mobx/mobx.dart';
 
 class LoginPage extends StatefulWidget {
   final String title;
@@ -13,6 +15,23 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends ModularState<LoginPage, LoginStore> {
+
+  @override
+  void initState() {
+    super.initState();
+    reaction((_) => store.loginException, (_) {
+      edgeAlert(
+          context, 
+          title: "Error", 
+          description: "User or Password incorrect",
+          duration: 2, 
+          icon: Icons.error, 
+          gravity: Gravity.top, 
+          backgroundColor: Colors.red
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final fullMediaWidth = MediaQuery.of(context).size.width;
@@ -22,8 +41,8 @@ class LoginPageState extends ModularState<LoginPage, LoginStore> {
       onWillPop: () async => false,
       child: Scaffold(
         body: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
+            height: fullMediaHeight,
+            width: fullMediaWidth,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.bottomLeft,
@@ -42,7 +61,7 @@ class LoginPageState extends ModularState<LoginPage, LoginStore> {
           alignment: Alignment.center,
           width: fullMediaWidth * AppConsts.eightyPercent,
           height: fullMediaHeight * AppConsts.thirtyFivePercent,
-          padding: const EdgeInsets.all(AppConsts.twentyFive),
+          padding: EdgeInsets.all(AppConsts.twentyFive),
           decoration: ComponentsStyles.backgroundLoginDecoration,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -58,14 +77,28 @@ class LoginPageState extends ModularState<LoginPage, LoginStore> {
                   ),
                 ),
               ),
-              loginFormField(mediaWidth: fullMediaWidth, hintText: "Your Email", labelText: "Email", isPassword: false),
-              loginFormField(mediaWidth: fullMediaWidth, hintText: "Your Passwor", labelText: "Password", isPassword: true),
+              loginFormField(
+                  mediaWidth: fullMediaWidth,
+                  hintText: "Your Email",
+                  labelText: "Email",
+                  isPassword: false,
+                  textController: store.usernameController),
+              loginFormField(
+                  mediaWidth: fullMediaWidth,
+                  hintText: "Your Password",
+                  labelText: "Password",
+                  isPassword: true,
+                  isPasswordHide: store.isPasswordHide,
+                  textController: store.passwordController),
               Padding(
                 padding: EdgeInsets.only(left: AppConsts.five),
                 child: ButtonTheme(
                   child: ElevatedButton(
-                      child: Text('Sing In', style: ComponentsStyles.normal15White),
-                      onPressed: null,
+                      child: Text('Sing In',
+                          style: ComponentsStyles.normal15White),
+                      onPressed: () {
+                        store.tryToLog();
+                      },
                       style: ComponentsStyles.greenButton),
                 ),
               )
@@ -81,6 +114,7 @@ class LoginPageState extends ModularState<LoginPage, LoginStore> {
       @required String hintText,
       @required String labelText,
       @required bool isPassword,
+      @required TextEditingController textController,
       bool isPasswordHide = false}) {
     return Observer(builder: (_) {
       return Theme(
@@ -93,25 +127,25 @@ class LoginPageState extends ModularState<LoginPage, LoginStore> {
               width: mediaWidth,
               child: TextField(
                 key: Key(labelText),
+                obscureText: isPasswordHide,
+                controller: textController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   hintText: hintText,
-                  // "Your Email",
                   labelText: labelText,
-                  // "Email",
                   labelStyle: ComponentsStyles.regurlar13Black,
                   border: ComponentsStyles.inputBorderBlack54,
                   suffixIcon: !isPassword
-                      ? IconButton(
-                          icon: Icon(Icons.account_circle),
-                          onPressed: null,
-                        )
-                      : IconButton(
-                          icon: Icon(isPasswordHide
-                              ? Icons.visibility
-                              : Icons.visibility_off),
-                          onPressed: null,
-                        ),
+                    ? IconButton(
+                        icon: Icon(Icons.account_circle),
+                        onPressed: null,
+                      )
+                    : IconButton(
+                        icon: Icon(isPasswordHide
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                        onPressed: () => store.setObscurePassword(!store.isPasswordHide),
+                      ),
                   // onChanged: store.setEmail,
                 ),
               ),
