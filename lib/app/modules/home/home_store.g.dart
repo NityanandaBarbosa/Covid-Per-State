@@ -39,15 +39,22 @@ mixin _$HomeStore on HomeStoreBase, Store {
     });
   }
 
+  final _$getStateCasesAsyncAction = AsyncAction('HomeStoreBase.getStateCases');
+
+  @override
+  Future<void> getStateCases() {
+    return _$getStateCasesAsyncAction.run(() => super.getStateCases());
+  }
+
   final _$HomeStoreBaseActionController =
       ActionController(name: 'HomeStoreBase');
 
   @override
-  dynamic setStatesDict(List<StateCases> value) {
+  dynamic setStatesList(List<StateCases> value) {
     final _$actionInfo = _$HomeStoreBaseActionController.startAction(
-        name: 'HomeStoreBase.setStatesDict');
+        name: 'HomeStoreBase.setStatesList');
     try {
-      return super.setStatesDict(value);
+      return super.setStatesList(value);
     } finally {
       _$HomeStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -59,17 +66,6 @@ mixin _$HomeStore on HomeStoreBase, Store {
         name: 'HomeStoreBase.setCasesException');
     try {
       return super.setCasesException(value);
-    } finally {
-      _$HomeStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void getStateCases() {
-    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
-        name: 'HomeStoreBase.getStateCases');
-    try {
-      return super.getStateCases();
     } finally {
       _$HomeStoreBaseActionController.endAction(_$actionInfo);
     }

@@ -14,21 +14,24 @@ abstract class HomeStoreBase with Store {
   final _repository = Modular.get<CovidCasesRepository>();
 
   @observable
-  List<StateCases> statesList;
+  List<StateCases> statesList = [];
 
   @observable
   GetCasesException getCasesException;
 
   @action
-  setStatesDict(List<StateCases> value) => statesList = value;
+  setStatesList(List<StateCases> value) => statesList = value;
 
   @action
   setCasesException(GetCasesException value) => getCasesException = value;
 
   @action
-  void getStateCases() {
-    _repository.getCases().fold((l) => setCasesException(l), (r) => setStatesDict(r));
+  Future<void> getStateCases() async {
+    final response = await _repository.getCases();
+    response.fold((l) {
+      setCasesException(l);
+    }, (r) {
+      setStatesList(r);
+    });
   }
 }
-
-class DayResult {}

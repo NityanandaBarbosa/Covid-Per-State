@@ -4,9 +4,12 @@ class AppConsts {
   static const eightyPercent = 0.8;
   static const seventyPercent = 0.7;
   static const fiftyPercent = 0.5;
+  static const fortyFivePercent = 0.45;
   static const fortyPercent = 0.4;
   static const thirtyFivePercent = 0.35;
   static const thirtyPercent = 0.3;
+  static const twelvePercent = 0.2;
+  static const fifteenPercent = 0.15;
   static const elevenPercent = 0.11;
   static const fivePercent = 0.05;
   static const fourPointSixPercent = 0.046;
