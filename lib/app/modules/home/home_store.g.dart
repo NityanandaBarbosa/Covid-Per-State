@@ -12,13 +12,13 @@ mixin _$HomeStore on HomeStoreBase, Store {
   final _$statesListAtom = Atom(name: 'HomeStoreBase.statesList');
 
   @override
-  List<StateCases> get statesList {
+  List<StateCasesModel> get statesList {
     _$statesListAtom.reportRead();
     return super.statesList;
   }
 
   @override
-  set statesList(List<StateCases> value) {
+  set statesList(List<StateCasesModel> value) {
     _$statesListAtom.reportWrite(value, super.statesList, () {
       super.statesList = value;
     });
@@ -50,7 +50,7 @@ mixin _$HomeStore on HomeStoreBase, Store {
       ActionController(name: 'HomeStoreBase');
 
   @override
-  dynamic setStatesList(List<StateCases> value) {
+  dynamic setStatesList(List<StateCasesModel> value) {
     final _$actionInfo = _$HomeStoreBaseActionController.startAction(
         name: 'HomeStoreBase.setStatesList');
     try {

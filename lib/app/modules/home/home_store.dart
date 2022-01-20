@@ -1,5 +1,5 @@
 import 'package:brazil_covid_per_state/app/modules/home/exception/get_cases_exceptions.dart';
-import 'package:brazil_covid_per_state/app/modules/home/models/StateCases.dart';
+import 'package:brazil_covid_per_state/app/modules/home/models/StateCasesModel.dart';
 import 'package:brazil_covid_per_state/app/modules/home/repository/covid_cases_repository.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
@@ -14,13 +14,13 @@ abstract class HomeStoreBase with Store {
   final _repository = Modular.get<CovidCasesRepository>();
 
   @observable
-  List<StateCases> statesList = [];
+  List<StateCasesModel> statesList = [];
 
   @observable
   GetCasesException getCasesException;
 
   @action
-  setStatesList(List<StateCases> value) => statesList = value;
+  setStatesList(List<StateCasesModel> value) => statesList = value;
 
   @action
   setCasesException(GetCasesException value) => getCasesException = value;

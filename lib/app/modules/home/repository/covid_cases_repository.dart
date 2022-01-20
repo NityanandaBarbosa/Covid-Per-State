@@ -1,5 +1,5 @@
 import 'package:brazil_covid_per_state/app/modules/home/exception/get_cases_exceptions.dart';
-import 'package:brazil_covid_per_state/app/modules/home/models/StateCases.dart';
+import 'package:brazil_covid_per_state/app/modules/home/models/StateCasesModel.dart';
 import 'package:brazil_covid_per_state/app/modules/home/models/CasesModels.dart';
 import 'package:brazil_covid_per_state/app/shared/consts/AppConsts.dart';
 import 'package:brazil_covid_per_state/app/shared/dio/dio_client.dart';
@@ -9,10 +9,10 @@ import 'package:flutter_modular/flutter_modular.dart';
 class CovidCasesRepository {
   final dio = Modular.get<DioClient>().dio;
 
-  Future<Either<GetCasesException, List<StateCases>>> getCases() async {
+  Future<Either<GetCasesException, List<StateCasesModel>>> getCases() async {
     var listResults = <DayResult>[];
 
-    List<StateCases> listStatesCases = [];
+    List<StateCasesModel> listStatesCases = [];
 
     Map<State, List<DayResult>> statesMap = {};
 
@@ -29,7 +29,7 @@ class CovidCasesRepository {
       });
 
       statesMap.forEach((key, value) {
-        listStatesCases.add(StateCases(key, value));
+        listStatesCases.add(StateCasesModel(key, value));
       });
 
       return right(listStatesCases);

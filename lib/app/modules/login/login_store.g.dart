@@ -24,6 +24,21 @@ mixin _$LoginStore on _LoginStoreBase, Store {
     });
   }
 
+  final _$isLoggedAtom = Atom(name: '_LoginStoreBase.isLogged');
+
+  @override
+  bool get isLogged {
+    _$isLoggedAtom.reportRead();
+    return super.isLogged;
+  }
+
+  @override
+  set isLogged(bool value) {
+    _$isLoggedAtom.reportWrite(value, super.isLogged, () {
+      super.isLogged = value;
+    });
+  }
+
   final _$loginExceptionAtom = Atom(name: '_LoginStoreBase.loginException');
 
   @override
@@ -41,6 +56,17 @@ mixin _$LoginStore on _LoginStoreBase, Store {
 
   final _$_LoginStoreBaseActionController =
       ActionController(name: '_LoginStoreBase');
+
+  @override
+  dynamic setLogged(bool value) {
+    final _$actionInfo = _$_LoginStoreBaseActionController.startAction(
+        name: '_LoginStoreBase.setLogged');
+    try {
+      return super.setLogged(value);
+    } finally {
+      _$_LoginStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic setObscurePassword(bool value) {
@@ -68,6 +94,7 @@ mixin _$LoginStore on _LoginStoreBase, Store {
   String toString() {
     return '''
 isPasswordHide: ${isPasswordHide},
+isLogged: ${isLogged},
 loginException: ${loginException}
     ''';
   }

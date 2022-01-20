@@ -1,6 +1,5 @@
 import 'package:brazil_covid_per_state/app/modules/home/components/StateCard.dart';
 import 'package:brazil_covid_per_state/app/modules/home/home_store.dart';
-import 'package:brazil_covid_per_state/app/shared/dio/dio_client.dart';
 import 'package:brazil_covid_per_state/app/shared/sytles/ComponentsStyles.dart';
 import 'package:edge_alerts/edge_alerts.dart';
 import 'package:flutter/material.dart';

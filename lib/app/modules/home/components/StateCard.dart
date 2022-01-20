@@ -1,11 +1,11 @@
-import 'package:brazil_covid_per_state/app/modules/home/models/StateCases.dart';
+import 'package:brazil_covid_per_state/app/modules/home/models/StateCasesModel.dart';
 import 'package:brazil_covid_per_state/app/shared/consts/AppConsts.dart';
 import 'package:brazil_covid_per_state/app/shared/sytles/ComponentsStyles.dart';
 import 'package:dartz/dartz.dart' hide State;
 import 'package:flutter/material.dart';
 
 class StateCard extends StatelessWidget {
-  final StateCases state;
+  final StateCasesModel state;
   final double width;
   final double height;
   StateCard({Key key, this.state, this.width, this.height}) : super(key: key);

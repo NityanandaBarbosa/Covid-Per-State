@@ -19,7 +19,13 @@ abstract class _LoginStoreBase with Store {
   bool isPasswordHide = true;
 
   @observable
+  bool isLogged = false;
+
+  @observable
   LoginException loginException;
+
+  @action
+  setLogged(bool value) => isLogged = value;
 
   @action
   setObscurePassword(bool value) => isPasswordHide = value;
@@ -30,6 +36,9 @@ abstract class _LoginStoreBase with Store {
   void tryToLog() {
     final response = loginRepositoy.tryToLogin(
         username: usernameController.text, password: passwordController.text);
-    response.fold((l) => setLoginException(l), (r) => Modular.to.pushNamed("/registered_states"));
+    response.fold((l) => setLoginException(l), (r) {
+      setLogged(true);
+      Modular.to.pushNamed("/registered_states");
+    });
   }
 }
