@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 
 class LoginRepositoy {
-  final mockedUsers = {"Nityananda@gmail.com": "123456", "Digital@gmail.com": "teste123"};
+  final mockedUsers = {"Nityananda@gmail.com": "123456", "userTest@gmail.com": "test123"};
 
   Either<ConnectionFailure, bool> tryToLogin(
       {@required String username, @required String password}) {
