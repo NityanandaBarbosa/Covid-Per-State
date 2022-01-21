@@ -23,5 +23,5 @@
 username1 : Nityananda@gmail.com
 password1 : 123456
 
-username2 : Digital@gmail.com
-password2 : teste123
+username2 : userTest@gmail.com
+password2 : test123
