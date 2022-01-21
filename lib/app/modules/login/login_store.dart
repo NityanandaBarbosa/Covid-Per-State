@@ -1,4 +1,5 @@
 import 'package:brazil_covid_per_state/app/modules/login/repository/login_repository.dart';
+import 'package:brazil_covid_per_state/app/shared/consts/AppStrings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
@@ -19,7 +20,13 @@ abstract class _LoginStoreBase with Store {
   bool isPasswordHide = true;
 
   @observable
+  bool isLogged = false;
+
+  @observable
   LoginException loginException;
+
+  @action
+  setLogged(bool value) => isLogged = value;
 
   @action
   setObscurePassword(bool value) => isPasswordHide = value;
@@ -30,6 +37,9 @@ abstract class _LoginStoreBase with Store {
   void tryToLog() {
     final response = loginRepositoy.tryToLogin(
         username: usernameController.text, password: passwordController.text);
-    response.fold((l) => setLoginException(l), (r) => Modular.to.pushNamed("/registered_states"));
+    response.fold((l) => setLoginException(l), (r) {
+      setLogged(true);
+      Modular.to.pushNamed("${AppStrings.statesList}");
+    });
   }
 }
