@@ -11,13 +11,13 @@
 
 ###  Chrome
 - Inside flutter project dir run 
--- $ flutter pub get
--- $ flutter run -d Chrome
+- $ flutter pub get
+- $ flutter run -d Chrome
 
 ###  Edge
 - Inside flutter project dir run 
--- $ flutter pub get
--- $ flutter run -d Edge
+- $ flutter pub get
+- $ flutter run -d Edge
 
 ## Credentials to login into app
 username1 : Nityananda@gmail.com
