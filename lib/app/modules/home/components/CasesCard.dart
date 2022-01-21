@@ -14,7 +14,7 @@ class CasesCard extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.all(AppConsts.five),
         child: Container(
-          height: height * AppConsts.twelvePercent,
+          height: height * AppConsts.thirtyFivePercent,
           width: width * AppConsts.fortyFivePercent,
           decoration: ComponentsStyles.backgroundLoginDecoration,
           child: Padding(
@@ -23,11 +23,11 @@ class CasesCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Casos confirmados:\n${result.confirmed}"),
-                Text("Casos confirmados p/ 100k:\n${result.confirmedPer100KInhabitants}"),
-                Text("Taxa de obito:\n${result.deathRate}"),
-                Text("População estimada:\n${result.estimatedPopulation}"),
-                Text("Data da medição:\n${result.date.day}/${result.date.month}/${result.date.year}")
+                Text("Confirmed cases:\n${result.confirmed}"),
+                Text("Cases per 100k:\n${result.confirmedPer100KInhabitants.toStringAsFixed(2)}"),
+                Text("Death rate:\n${(result.deathRate*100).toStringAsFixed(2)}%"),
+                Text("Estimated population:\n${result.estimatedPopulation}"),
+                Text("Measurement date:\n${result.date.day}/${result.date.month}/${result.date.year}")
               ],
             ),
           ),

@@ -35,15 +35,17 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
   Widget build(BuildContext context) {
     final fullMediaWidth = MediaQuery.of(context).size.width;
     final fullMediaHeight = MediaQuery.of(context).size.height;
+    final listStateCards = <StateCard>[];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Covid per state'),
+        title: Text('Brazil Covid Analytics'),
         flexibleSpace: ComponentsStyles.gradientAppbaContainer,
         actions: [
           IconButton(
               icon: Icon(Icons.refresh),
               onPressed: () {
+                listStateCards.clear();
                 store.setStatesList([]);
                 store.getStateCases();
               })
@@ -51,6 +53,16 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
       ),
       body: Observer(
         builder: (_) {
+          if (store.statesList.isNotEmpty) {
+            store.statesList.asMap().forEach((index, state) {
+              listStateCards.add(StateCard(
+                state: state,
+                height: fullMediaHeight,
+                width: fullMediaWidth,
+                index: index,
+              ));
+            });
+          }
           return Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -64,12 +76,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                       children: [
                         Wrap(
                             alignment: WrapAlignment.spaceEvenly,
-                            children: store.statesList
-                                .map((item) => StateCard(
-                                    state: item,
-                                    height: fullMediaHeight,
-                                    width: fullMediaWidth))
-                                .toList()),
+                            children: listStateCards)
                       ],
                     ),
                   )

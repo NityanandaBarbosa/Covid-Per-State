@@ -10,7 +10,8 @@ class StateCard extends StatelessWidget {
   final double width;
   final double height;
   final int index;
-  StateCard({Key key, this.state, this.width, this.height, this.index}) : super(key: key);
+  StateCard({Key key, this.state, this.width, this.height, this.index})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,27 +23,29 @@ class StateCard extends StatelessWidget {
           width: width * AppConsts.fortyFivePercent,
           decoration: ComponentsStyles.backgroundLoginDecoration,
           child: Padding(
-            padding: const EdgeInsets.all(AppConsts.ten),
+            padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Estado:\n${state.state}"),
-                Text("Casos confirmados:\n${state.results.first.confirmed}"),
-                Text("Ultima medição:\n${state.results.first.date.day}/${state.results.first.date.month}/${state.results.first.date.year}"),
+                Text("${state.state}"),
+                Text("Confirmed cases:\n${state.results.first.confirmed}"),
+                Text(
+                    "Last measurement:\n${state.results.first.date.day}/${state.results.first.date.month}/${state.results.first.date.year}"),
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, 0, 5, 0),
                   child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: Text("$index")
-                  ),
+                      alignment: Alignment.bottomRight, 
+                      child: Text("${index+1}")
+                    ),
                 )
               ],
             ),
           ),
         ),
       ),
-      onTap: () => Modular.to.pushNamed("/registered_states/state/:id".replaceFirst(":id", "$index")),
+      onTap: () => Modular.to.pushNamed(
+          "/registered_states/state/:id".replaceFirst(":id", "$index")),
     );
   }
 }
