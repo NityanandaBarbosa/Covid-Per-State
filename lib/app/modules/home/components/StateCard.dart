@@ -7,10 +7,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 class StateCard extends StatelessWidget {
   final StateCasesModel state;
-  final double width;
-  final double height;
   final int index;
-  StateCard({Key key, this.state, this.width, this.height, this.index})
+  StateCard({Key key, this.state, this.index})
       : super(key: key);
 
   @override
@@ -19,8 +17,8 @@ class StateCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(AppConsts.five),
         child: Container(
-          height: height * AppConsts.twelvePercent,
-          width: width * AppConsts.fortyFivePercent,
+          height: 200,
+          width: 190,
           decoration: ComponentsStyles.backgroundLoginDecoration,
           child: Padding(
             padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
@@ -28,15 +26,15 @@ class StateCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("${state.state}"),
-                Text("Confirmed cases:\n${state.results.first.confirmed}"),
+                Text("${state.state}", style: ComponentsStyles.bold20Black,),
+                Text("Confirmed cases:\n${state.results.first.confirmed}",style: ComponentsStyles.bold15Black87,),
                 Text(
-                    "Last measurement:\n${state.results.first.date.day}/${state.results.first.date.month}/${state.results.first.date.year}"),
+                    "Last measurement:\n${state.results.first.date.day}/${state.results.first.date.month}/${state.results.first.date.year}",style: ComponentsStyles.bold15Black54,),
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, 0, 5, 0),
                   child: Align(
                       alignment: Alignment.bottomRight, 
-                      child: Text("${index+1}")
+                      child: Text("${index+1}",style: ComponentsStyles.bold15Black35,)
                     ),
                 )
               ],

@@ -57,53 +57,62 @@ class LoginPageState extends ModularState<LoginPage, LoginStore> {
   Widget loginWidget(fullMediaWidth, fullMediaHeight) {
     return Observer(builder: (_) {
       return Center(
-        child: Container(
-          alignment: Alignment.center,
-          width: fullMediaWidth * AppConsts.eightyPercent,
-          height: fullMediaHeight * AppConsts.thirtyFivePercent,
-          padding: EdgeInsets.all(AppConsts.twentyFive),
-          decoration: ComponentsStyles.backgroundLoginDecoration,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Container(
-                alignment: Alignment.topCenter,
-                child: Padding(
-                  padding: EdgeInsets.all(AppConsts.ten),
-                  child: Text(
-                    "Covid Analytics",
-                    style: ComponentsStyles.normal20Black,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 40),
+              child: Text("Brazil Covid Analytics", style: ComponentsStyles.normal25Blue),
+            ),
+            Container(
+              alignment: Alignment.center,
+              width: 300.0,
+              height: 300.0,
+              padding: EdgeInsets.all(AppConsts.twentyFive),
+              decoration: ComponentsStyles.backgroundLoginDecoration,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(
+                    alignment: Alignment.topCenter,
+                    child: Padding(
+                      padding: EdgeInsets.all(AppConsts.ten),
+                      child: Text(
+                        "Access your acount",
+                        style: ComponentsStyles.normal20Black,
+                      ),
+                    ),
                   ),
-                ),
+                  loginFormField(
+                      mediaWidth: fullMediaWidth,
+                      hintText: "Email",
+                      labelText: "Email",
+                      isPassword: false,
+                      textController: store.usernameController),
+                  loginFormField(
+                      mediaWidth: fullMediaWidth,
+                      hintText: "Password",
+                      labelText: "Password",
+                      isPassword: true,
+                      isPasswordHide: store.isPasswordHide,
+                      textController: store.passwordController),
+                  Padding(
+                    padding: EdgeInsets.only(left: AppConsts.five),
+                    child: ButtonTheme(
+                      child: ElevatedButton(
+                          child: Text('Sing In',
+                              style: ComponentsStyles.normal15White),
+                          onPressed: () {
+                            store.tryToLog();
+                          },
+                          style: ComponentsStyles.greenButton),
+                    ),
+                  )
+                ],
               ),
-              loginFormField(
-                  mediaWidth: fullMediaWidth,
-                  hintText: "Your Email",
-                  labelText: "Email",
-                  isPassword: false,
-                  textController: store.usernameController),
-              loginFormField(
-                  mediaWidth: fullMediaWidth,
-                  hintText: "Your Password",
-                  labelText: "Password",
-                  isPassword: true,
-                  isPasswordHide: store.isPasswordHide,
-                  textController: store.passwordController),
-              Padding(
-                padding: EdgeInsets.only(left: AppConsts.five),
-                child: ButtonTheme(
-                  child: ElevatedButton(
-                      child: Text('Sing In',
-                          style: ComponentsStyles.normal15White),
-                      onPressed: () {
-                        store.tryToLog();
-                      },
-                      style: ComponentsStyles.greenButton),
-                ),
-              )
-            ],
-          ),
+            ),
+          ],
         ),
       );
     });
@@ -141,7 +150,7 @@ class LoginPageState extends ModularState<LoginPage, LoginStore> {
                         onPressed: null,
                       )
                     : IconButton(
-                        icon: Icon(isPasswordHide
+                        icon: Icon(!isPasswordHide
                             ? Icons.visibility
                             : Icons.visibility_off),
                         onPressed: () => store.setObscurePassword(!store.isPasswordHide),

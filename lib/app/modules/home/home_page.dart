@@ -1,5 +1,6 @@
 import 'package:brazil_covid_per_state/app/modules/home/components/StateCard.dart';
 import 'package:brazil_covid_per_state/app/modules/home/home_store.dart';
+import 'package:brazil_covid_per_state/app/shared/consts/AppConsts.dart';
 import 'package:brazil_covid_per_state/app/shared/sytles/ComponentsStyles.dart';
 import 'package:edge_alerts/edge_alerts.dart';
 import 'package:flutter/material.dart';
@@ -33,13 +34,12 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
 
   @override
   Widget build(BuildContext context) {
-    final fullMediaWidth = MediaQuery.of(context).size.width;
-    final fullMediaHeight = MediaQuery.of(context).size.height;
     final listStateCards = <StateCard>[];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Brazil Covid Analytics'),
+        title: Text('Brazil Covid Analytics', style: ComponentsStyles.bold20Black54),
+        iconTheme: IconThemeData(color: Colors.black54),
         flexibleSpace: ComponentsStyles.gradientAppbaContainer,
         actions: [
           IconButton(
@@ -57,8 +57,6 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
             store.statesList.asMap().forEach((index, state) {
               listStateCards.add(StateCard(
                 state: state,
-                height: fullMediaHeight,
-                width: fullMediaWidth,
                 index: index,
               ));
             });
@@ -68,7 +66,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
               gradient: LinearGradient(
                   begin: Alignment.bottomLeft,
                   end: Alignment.topRight,
-                  colors: [Colors.green, Colors.yellow]),
+                  colors: [Colors.lightBlueAccent.withOpacity(AppConsts.fiftyPercent), Colors.amberAccent]),
             ),
             child: store.statesList.isNotEmpty
                 ? SafeArea(

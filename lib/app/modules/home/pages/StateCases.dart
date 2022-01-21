@@ -1,5 +1,6 @@
 import 'package:brazil_covid_per_state/app/modules/home/components/CasesCard.dart';
 import 'package:brazil_covid_per_state/app/modules/home/models/StateCasesModel.dart';
+import 'package:brazil_covid_per_state/app/shared/consts/AppConsts.dart';
 import 'package:brazil_covid_per_state/app/shared/sytles/ComponentsStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -16,12 +17,10 @@ class StateCases extends StatefulWidget {
 class _StateCasesState extends State<StateCases> {
   @override
   Widget build(BuildContext context) {
-    final fullMediaWidth = MediaQuery.of(context).size.width;
-    final fullMediaHeight = MediaQuery.of(context).size.height;
-
     return Scaffold(
       appBar: AppBar(
-        title: Text("${widget.state.state}"),
+        title: Text("${widget.state.state}", style: ComponentsStyles.bold20Black54),
+        iconTheme: IconThemeData(color: Colors.black54),
         flexibleSpace: ComponentsStyles.gradientAppbaContainer,
       ),
       body: Observer(builder: (_) {
@@ -30,7 +29,7 @@ class _StateCasesState extends State<StateCases> {
               gradient: LinearGradient(
                   begin: Alignment.bottomLeft,
                   end: Alignment.topRight,
-                  colors: [Colors.green, Colors.yellow]),
+                  colors: [Colors.lightBlueAccent.withOpacity(AppConsts.fiftyPercent), Colors.amberAccent]),
             ),
             child: 
             SafeArea(
@@ -39,11 +38,7 @@ class _StateCasesState extends State<StateCases> {
                 Wrap(
                     alignment: WrapAlignment.spaceEvenly,
                     children: widget.state.results
-                        .map((item) => CasesCard(
-                            result: item,
-                            height: fullMediaHeight,
-                            width: fullMediaWidth))
-                        .toList()),
+                        .map((item) => CasesCard(result: item)).toList()),
               ],
             ))
             );
