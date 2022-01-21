@@ -17,9 +17,11 @@ class StateCases extends StatefulWidget {
 class _StateCasesState extends State<StateCases> {
   @override
   Widget build(BuildContext context) {
+    final stateName = "${widget.state.state}".replaceAll("State.", "");
     return Scaffold(
       appBar: AppBar(
-        title: Text("${widget.state.state}", style: ComponentsStyles.bold20Black54),
+        title: Text(stateName,
+            style: ComponentsStyles.bold20Black54),
         iconTheme: IconThemeData(color: Colors.black54),
         flexibleSpace: ComponentsStyles.gradientAppbaContainer,
       ),
@@ -29,19 +31,21 @@ class _StateCasesState extends State<StateCases> {
               gradient: LinearGradient(
                   begin: Alignment.bottomLeft,
                   end: Alignment.topRight,
-                  colors: [Colors.lightBlueAccent.withOpacity(AppConsts.fiftyPercent), Colors.amberAccent]),
+                  colors: [
+                    Colors.lightBlueAccent.withOpacity(AppConsts.fiftyPercent),
+                    Colors.amberAccent
+                  ]),
             ),
-            child: 
-            SafeArea(
+            child: SafeArea(
                 child: ListView(
               children: [
                 Wrap(
                     alignment: WrapAlignment.spaceEvenly,
                     children: widget.state.results
-                        .map((item) => CasesCard(result: item)).toList()),
+                        .map((item) => CasesCard(result: item))
+                        .toList()),
               ],
-            ))
-            );
+            )));
       }),
     );
   }
