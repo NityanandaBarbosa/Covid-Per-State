@@ -1,5 +1,6 @@
 import 'package:brazil_covid_per_state/app/modules/login/login_store.dart';
 import 'package:brazil_covid_per_state/app/shared/consts/AppConsts.dart';
+import 'package:brazil_covid_per_state/app/shared/consts/AppStrings.dart';
 import 'package:brazil_covid_per_state/app/shared/sytles/ComponentsStyles.dart';
 import 'package:edge_alerts/edge_alerts.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -22,9 +23,9 @@ class LoginPageState extends ModularState<LoginPage, LoginStore> {
     reaction((_) => store.loginException, (_) {
       edgeAlert(
           context, 
-          title: "Error", 
-          description: "User or Password incorrect",
-          duration: 2, 
+          title: AppStrings.error, 
+          description: AppStrings.wrongUsernameOrPassword,
+          duration: AppConsts.delayTwo, 
           icon: Icons.error, 
           gravity: Gravity.top, 
           backgroundColor: Colors.red
@@ -61,13 +62,13 @@ class LoginPageState extends ModularState<LoginPage, LoginStore> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 40),
-              child: Text("Brazil Covid Analytics", style: ComponentsStyles.normal25Blue),
+              padding: EdgeInsets.fromLTRB(AppConsts.zero, AppConsts.zero, AppConsts.zero, AppConsts.forty),
+              child: Text(AppStrings.appTitle, style: ComponentsStyles.normal25Blue),
             ),
             Container(
               alignment: Alignment.center,
-              width: 300.0,
-              height: 300.0,
+              width: AppConsts.threeHundred,
+              height: AppConsts.threeHundred,
               padding: EdgeInsets.all(AppConsts.twentyFive),
               decoration: ComponentsStyles.backgroundLoginDecoration,
               child: Column(
@@ -78,22 +79,21 @@ class LoginPageState extends ModularState<LoginPage, LoginStore> {
                     alignment: Alignment.topCenter,
                     child: Padding(
                       padding: EdgeInsets.all(AppConsts.ten),
-                      child: Text(
-                        "Access your acount",
+                      child: Text(AppStrings.accessAcc,
                         style: ComponentsStyles.normal20Black,
                       ),
                     ),
                   ),
                   loginFormField(
                       mediaWidth: fullMediaWidth,
-                      hintText: "Email",
-                      labelText: "Email",
+                      hintText: AppStrings.email,
+                      labelText: AppStrings.email,
                       isPassword: false,
                       textController: store.usernameController),
                   loginFormField(
                       mediaWidth: fullMediaWidth,
-                      hintText: "Password",
-                      labelText: "Password",
+                      hintText: AppStrings.password,
+                      labelText: AppStrings.password,
                       isPassword: true,
                       isPasswordHide: store.isPasswordHide,
                       textController: store.passwordController),
@@ -101,7 +101,7 @@ class LoginPageState extends ModularState<LoginPage, LoginStore> {
                     padding: EdgeInsets.only(left: AppConsts.five),
                     child: ButtonTheme(
                       child: ElevatedButton(
-                          child: Text('Sing In',
+                          child: Text(AppStrings.singIn,
                               style: ComponentsStyles.normal15White),
                           onPressed: () {
                             store.tryToLog();

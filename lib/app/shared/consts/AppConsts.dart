@@ -15,13 +15,24 @@ class AppConsts {
   static const fourPointSixPercent = 0.046;
 
   //*Double
+  static const threeHundredFifety = 300.0;
+  static const threeHundred = 300.0;
+  static const twoHundred = 300.0;
+  static const hundredNinety = 190.0;
+  static const forty = 25.0;
   static const twentyFive = 25.0;
+  static const twenty = 20.0;
   static const ten = 10.0;
   static const five = 5.0;
+  static const zero = 0.0;
+
+  //Int
+  static const delayTwo = 2;
 
   //*Api URL
   static const baseUrl = "https://api.brasil.io/v1/dataset/covid19/caso/data/";
-  static const apiFilter = "?search=&date=&state=&place_type=state&is_last=&city_ibge_code";
+  static const apiFilter =
+      "?search=&date=&state=&place_type=state&is_last=&city_ibge_code";
 
   //*ApiToken
   static const apiToken = "Token 8b34c604f8c467c5950550f6870bde20dc5229fb";

@@ -1,4 +1,5 @@
 import 'package:brazil_covid_per_state/app/modules/login/repository/login_repository.dart';
+import 'package:brazil_covid_per_state/app/shared/consts/AppStrings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
@@ -38,7 +39,7 @@ abstract class _LoginStoreBase with Store {
         username: usernameController.text, password: passwordController.text);
     response.fold((l) => setLoginException(l), (r) {
       setLogged(true);
-      Modular.to.pushNamed("/registered_states");
+      Modular.to.pushNamed("${AppStrings.statesList}");
     });
   }
 }

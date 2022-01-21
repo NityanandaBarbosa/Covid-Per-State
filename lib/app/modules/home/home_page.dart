@@ -1,6 +1,7 @@
 import 'package:brazil_covid_per_state/app/modules/home/components/StateCard.dart';
 import 'package:brazil_covid_per_state/app/modules/home/home_store.dart';
 import 'package:brazil_covid_per_state/app/shared/consts/AppConsts.dart';
+import 'package:brazil_covid_per_state/app/shared/consts/AppStrings.dart';
 import 'package:brazil_covid_per_state/app/shared/sytles/ComponentsStyles.dart';
 import 'package:edge_alerts/edge_alerts.dart';
 import 'package:flutter/material.dart';
@@ -23,9 +24,9 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
     store.getStateCases();
     reaction((_) => store.getCasesException, (_) {
       edgeAlert(context,
-          title: "Error",
-          description: "Was not possible get states!",
-          duration: 2,
+          title: AppStrings.error,
+          description: AppStrings.errorMessage,
+          duration: AppConsts.delayTwo,
           icon: Icons.error,
           gravity: Gravity.top,
           backgroundColor: Colors.red);
@@ -38,7 +39,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Brazil Covid Analytics', style: ComponentsStyles.bold20Black54),
+        title: Text(AppStrings.appTitle, style: ComponentsStyles.bold20Black54),
         iconTheme: IconThemeData(color: Colors.black54),
         flexibleSpace: ComponentsStyles.gradientAppbaContainer,
         actions: [
@@ -66,7 +67,10 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
               gradient: LinearGradient(
                   begin: Alignment.bottomLeft,
                   end: Alignment.topRight,
-                  colors: [Colors.lightBlueAccent.withOpacity(AppConsts.fiftyPercent), Colors.amberAccent]),
+                  colors: [
+                    Colors.lightBlueAccent.withOpacity(AppConsts.fiftyPercent), 
+                    Colors.amberAccent
+                  ]),
             ),
             child: store.statesList.isNotEmpty
                 ? SafeArea(
@@ -74,7 +78,8 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                       children: [
                         Wrap(
                             alignment: WrapAlignment.spaceEvenly,
-                            children: listStateCards)
+                            children: listStateCards
+                          )
                       ],
                     ),
                   )
