@@ -17,10 +17,9 @@ class StateCases extends StatefulWidget {
 class _StateCasesState extends State<StateCases> {
   @override
   Widget build(BuildContext context) {
-    final stateName = "${widget.state.state}".replaceAll("State.", "");
     return Scaffold(
       appBar: AppBar(
-        title: Text(stateName,
+        title: Text(widget.state.name,
             style: ComponentsStyles.bold20Black54),
         iconTheme: IconThemeData(color: Colors.black54),
         flexibleSpace: ComponentsStyles.gradientAppbaContainer,

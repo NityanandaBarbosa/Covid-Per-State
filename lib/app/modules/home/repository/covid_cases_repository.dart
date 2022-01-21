@@ -29,7 +29,8 @@ class CovidCasesRepository {
       });
 
       statesMap.forEach((key, value) {
-        listStatesCases.add(StateCasesModel(key, value));
+        final name = "$key".replaceAll("State.", "");
+        listStatesCases.add(StateCasesModel(name, value));
       });
 
       return right(listStatesCases);

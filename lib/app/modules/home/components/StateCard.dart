@@ -14,7 +14,6 @@ class StateCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final stateName = "${state.state}".replaceAll("State.", "");
     return GestureDetector(
       child: Padding(
         padding: EdgeInsets.all(AppConsts.five),
@@ -28,7 +27,7 @@ class StateCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(stateName, style: ComponentsStyles.bold20Black,),
+                Text(state.name, style: ComponentsStyles.bold20Black,),
                 Text("${AppStrings.confirmedCases}${state.results.first.confirmed}",style: ComponentsStyles.bold15Black87,),
                 Text("${AppStrings.lastMeasurement}${state.results.first.date.day}/${state.results.first.date.month}/${state.results.first.date.year}",style: ComponentsStyles.bold15Black54,),
                 Padding(
