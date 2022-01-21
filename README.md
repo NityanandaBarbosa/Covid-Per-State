@@ -6,8 +6,8 @@
 ###  Android/iOS
 - You must conect your device in your computer.
 - Inside flutter project dir run 
--- $ flutter pub get
--- $ flutter run
+- $ flutter pub get
+- $ flutter run
 
 ###  Chrome
 - Inside flutter project dir run 
