@@ -1,6 +1,7 @@
 import 'package:brazil_covid_per_state/app/modules/home/components/StateCard.dart';
 import 'package:brazil_covid_per_state/app/modules/home/home_store.dart';
 import 'package:brazil_covid_per_state/app/shared/consts/AppConsts.dart';
+import 'package:brazil_covid_per_state/app/shared/consts/AppKeys.dart';
 import 'package:brazil_covid_per_state/app/shared/consts/AppStrings.dart';
 import 'package:brazil_covid_per_state/app/shared/sytles/ComponentsStyles.dart';
 import 'package:edge_alerts/edge_alerts.dart';
@@ -41,6 +42,11 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
       appBar: AppBar(
         title: Text(AppStrings.appTitle, style: ComponentsStyles.bold20Black54),
         iconTheme: IconThemeData(color: Colors.black54),
+        leading: IconButton(
+          key: Key(AppKeys.logOutBtnKey),
+          onPressed: () => Modular.to.pop(),
+          icon: Icon(Icons.exit_to_app)
+        ),
         flexibleSpace: ComponentsStyles.gradientAppbaContainer,
         actions: [
           IconButton(
@@ -49,7 +55,9 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                 listStateCards.clear();
                 store.setStatesList([]);
                 store.getStateCases();
-              })
+              },
+              key: Key(AppKeys.refreshBtnKey),
+            )
         ],
       ),
       body: Observer(

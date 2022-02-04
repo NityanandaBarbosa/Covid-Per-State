@@ -1,5 +1,6 @@
 import 'package:brazil_covid_per_state/app/modules/login/login_store.dart';
 import 'package:brazil_covid_per_state/app/shared/consts/AppConsts.dart';
+import 'package:brazil_covid_per_state/app/shared/consts/AppKeys.dart';
 import 'package:brazil_covid_per_state/app/shared/consts/AppStrings.dart';
 import 'package:brazil_covid_per_state/app/shared/sytles/ComponentsStyles.dart';
 import 'package:edge_alerts/edge_alerts.dart';
@@ -50,7 +51,12 @@ class LoginPageState extends ModularState<LoginPage, LoginStore> {
                   end: Alignment.topRight,
                   colors: [Colors.green, Colors.yellow]),
             ),
-            child: loginWidget(fullMediaWidth, fullMediaHeight)),
+            child: Center(
+              child: SingleChildScrollView(
+                child: loginWidget(fullMediaWidth, fullMediaHeight)
+                )
+              )
+            ),
       ),
     );
   }
@@ -85,12 +91,14 @@ class LoginPageState extends ModularState<LoginPage, LoginStore> {
                     ),
                   ),
                   loginFormField(
+                      componentKey: AppKeys.emailInputKey,
                       mediaWidth: fullMediaWidth,
                       hintText: AppStrings.email,
                       labelText: AppStrings.email,
                       isPassword: false,
                       textController: store.usernameController),
                   loginFormField(
+                      componentKey: AppKeys.passwordInputKey,
                       mediaWidth: fullMediaWidth,
                       hintText: AppStrings.password,
                       labelText: AppStrings.password,
@@ -101,6 +109,7 @@ class LoginPageState extends ModularState<LoginPage, LoginStore> {
                     padding: EdgeInsets.only(left: AppConsts.five),
                     child: ButtonTheme(
                       child: ElevatedButton(
+                        key: Key(AppKeys.signInBtnKey),
                           child: Text(AppStrings.singIn,
                               style: ComponentsStyles.normal15White),
                           onPressed: () {
@@ -124,6 +133,7 @@ class LoginPageState extends ModularState<LoginPage, LoginStore> {
       @required String labelText,
       @required bool isPassword,
       @required TextEditingController textController,
+      @required String componentKey,
       bool isPasswordHide = false}) {
     return Observer(builder: (_) {
       return Theme(
@@ -135,7 +145,7 @@ class LoginPageState extends ModularState<LoginPage, LoginStore> {
               alignment: Alignment.topCenter,
               width: mediaWidth,
               child: TextField(
-                key: Key(labelText),
+                key: Key(componentKey),
                 obscureText: isPasswordHide,
                 controller: textController,
                 keyboardType: TextInputType.emailAddress,
@@ -154,6 +164,7 @@ class LoginPageState extends ModularState<LoginPage, LoginStore> {
                             ? Icons.visibility
                             : Icons.visibility_off),
                         onPressed: () => store.setObscurePassword(!store.isPasswordHide),
+                        key: Key(AppKeys.hidePasswordBtnKey),
                       ),
                   // onChanged: store.setEmail,
                 ),

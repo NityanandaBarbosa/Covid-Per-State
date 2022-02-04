@@ -25,5 +25,5 @@ class AppStrings {
 
   //Routes
   static const statesList = "/registered_states";
-  static const specificState= "/state/:id";
+  static const specificState = "/state/:id";
 }
